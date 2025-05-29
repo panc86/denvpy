@@ -1,0 +1,20 @@
+[project]
+name = "denv"
+version = "0.1.0"
+description = "Development environment in Python"
+authors = [
+    {name = "Emanuele Panizio", email = "panc86@gmail.com"}
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyter",
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
