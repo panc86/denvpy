@@ -5,7 +5,7 @@ FROM python:${PYTHON_RELEASE}
 # regardless of whatever dependencies get added
 RUN set -eux; \
 	groupadd -r -g 1000 denver; \
-	useradd -r -d /data -g denver -u 1000 denver
+	useradd -r -d /app -g denver -u 1000 denver
 
 # system env
 ENV PYTHONUNBUFFERED=1
@@ -23,18 +23,18 @@ RUN apt update; \
     curl -sSL https://install.python-poetry.org | python3 - 
 
 # setup workspace
-VOLUME /data
-WORKDIR /data
+VOLUME /app
+WORKDIR /app
 COPY pyproject.toml .
 
 # setup environment
 RUN poetry install --no-cache --compile
-ENV PATH="/data/.venv/bin:$PATH"
+ENV PATH="/app/.venv/bin:$PATH"
 
 # setup workspace
-RUN chown -R denver:denver /data
+RUN chown -R denver:denver /app
 USER denver
 
 EXPOSE 8888
 
-ENTRYPOINT [ "bash" ]
+CMD [ "jupyter", "notebook" ]
