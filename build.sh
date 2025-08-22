@@ -2,13 +2,13 @@
 set -e
 
 CWD=$(cd $(dirname $0); pwd)
-IMAGE="denvpy:${PYTHON_VERSION:-3.12-slim}"
+RELEASE="${1:-local}"
+IMAGE="denvpy:${RELEASE}"
 echo Building $IMAGE
 docker build \
     --force-rm \
     --rm=true \
     -f "$CWD/Dockerfile" \
     --platform linux/amd64 \
-    --build-arg PYTHON_VERSION="${PYTHON_VERSION:-3.12-slim}" \
     -t $IMAGE \
     $CWD
