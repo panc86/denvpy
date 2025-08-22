@@ -6,8 +6,19 @@ A containerized streamlined environment for Python development.
 
 Docker ~= 28.x
 
-## Start
+## Build
 
 ```shell
-./build.sh && ./start.sh </workspace/project>
+./build.sh
+```
+
+## Run
+
+```shell
+docker run -it --rm \
+    --network host \
+    --env PROJECT_NAME=changeme \
+    --env PYTHON_VERSION=3.12 \
+    -v /tmp:/app/ws \
+    denvpy:local
 ```
