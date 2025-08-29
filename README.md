@@ -18,7 +18,17 @@ Docker ~= 28.x
 docker run -it --rm \
     --network host \
     --env PROJECT_NAME=changeme \
-    --env PYTHON_VERSION=3.12 \
-    -v /tmp:/app/ws \
+    -v <your-workspace>:/app/ws \
     denvpy:local
+```
+
+> you can create new project inside a given directory:
+> --env PROJECT_NAME=app/src creates project `src` inside app/
+
+## Commands
+
+Start a Jupyter Notebook
+
+```shell
+uvx --python 3.12 --with jupyter jupyter-notebook --notebook-dir=/app/ws
 ```
